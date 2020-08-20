@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Yagp</string>
+    <string name="empty_data">Нет данных</string>
+    <string name="error">Ошибка</string>
+    <string name="network_error">Ошибка сети</string>
+    <string name="retry">Обновить</string>
+</resources>

@@ -14,7 +14,7 @@
 
         </view>
 
-        <com.az.yaga.presentation.view.StateView
+        <com.az.yagp.presentation.view.StateView
             android:id="@+id/state_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

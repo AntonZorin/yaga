@@ -16,7 +16,13 @@ class SearchAdapterUserDelegate @Inject constructor() :
     AdapterDelegate<MutableList<SearchListMarker>>() {
     var clickCallback: ((user: User) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
-        return ViewHolder(ListItemUserBinding.inflate(LayoutInflater.from(parent.context)))
+        return ViewHolder(
+            ListItemUserBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun isForViewType(items: MutableList<SearchListMarker>, position: Int): Boolean {

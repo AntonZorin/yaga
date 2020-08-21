@@ -10,6 +10,6 @@ import javax.inject.Inject
  */
 class AppViewModel @Inject constructor(router: Router) : BaseViewModel(router) {
     fun setFirstScreen() {
-        router.navigateTo(Screens.SearchScreen)
+        router.newRootScreen(Screens.SearchScreen)
     }
 }

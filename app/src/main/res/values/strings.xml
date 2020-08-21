@@ -4,4 +4,6 @@
     <string name="error">Ошибка</string>
     <string name="network_error">Ошибка сети</string>
     <string name="retry">Обновить</string>
+    <string name="search_ener_name">Введите имя</string>
+    <string name="search_id">ID:</string>
 </resources>

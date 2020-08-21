@@ -2,11 +2,14 @@ package com.az.yagp.presentation.ext
 
 import android.app.Activity
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
@@ -38,3 +41,6 @@ fun Activity?.showKeyboard() = this?.currentFocus?.run {
     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
     imm?.showSoftInput(currentFocus, 0)
 }
+
+fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View =
+LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)

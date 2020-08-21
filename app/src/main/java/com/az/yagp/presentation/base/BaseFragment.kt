@@ -6,7 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.az.yagp.R
-import com.az.yagp.presentation.common.ResponseState
+import com.az.yagp.presentation.common.ViewState
 import com.az.yagp.presentation.common.ViewModelFactory
 import com.az.yagp.presentation.view.StateView
 import dagger.android.support.AndroidSupportInjection
@@ -22,12 +22,6 @@ abstract class BaseFragment : Fragment() {
 
     protected var disposable = CompositeDisposable()
 
-    private var stateView: StateView? = null
-
-    protected var progressObserver = Observer<ResponseState> { state ->
-        stateView?.setState(state!!)
-    }
-
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
@@ -35,7 +29,6 @@ abstract class BaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        stateView = view?.findViewById(R.id.state_view)
         initViews()
     }
 

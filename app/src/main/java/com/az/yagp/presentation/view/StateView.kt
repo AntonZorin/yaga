@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.az.yagp.R
 import com.az.yagp.databinding.StateBinding
-import com.az.yagp.presentation.common.ResponseState
+import com.az.yagp.presentation.common.ViewState
 import com.az.yagp.presentation.ext.setVisible
 
 class StateView @JvmOverloads constructor(
@@ -34,23 +34,23 @@ class StateView @JvmOverloads constructor(
         binding.message.text = text
     }
 
-    fun setState(rs: ResponseState) {
+    fun setState(rs: ViewState) {
         when (rs.state) {
-            ResponseState.State.IDLE -> {
+            ViewState.State.IDLE -> {
                 switchVisibility(false, false, false)
             }
-            ResponseState.State.LOADING -> {
+            ViewState.State.LOADING -> {
                 switchVisibility(true, false, false)
             }
-            ResponseState.State.EMPTY -> {
+            ViewState.State.EMPTY -> {
                 switchVisibility(false, true, true)
                 binding.message.text = context.getString(R.string.empty_data)
             }
-            ResponseState.State.ERROR -> {
+            ViewState.State.ERROR -> {
                 switchVisibility(false, true, true)
                 binding.message.text = context.getString(R.string.error)
             }
-            ResponseState.State.NETWORK_ERROR -> {
+            ViewState.State.NETWORK_ERROR -> {
                 switchVisibility(false, true, true)
                 binding.message.text =
                     networkErrorMessage ?: context.getString(R.string.network_error)

@@ -3,7 +3,7 @@ package com.az.yagp.presentation.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.az.yagp.presentation.common.ResponseState
+import com.az.yagp.presentation.common.ViewState
 import io.reactivex.disposables.CompositeDisposable
 import ru.terrakok.cicerone.Router
 
@@ -12,8 +12,8 @@ import ru.terrakok.cicerone.Router
  */
 abstract class BaseViewModel(protected val router: Router) : ViewModel() {
     var disposable: CompositeDisposable = CompositeDisposable()
-    private val loadingLiveData = MutableLiveData<ResponseState>()
-    fun getLoadingLiveData(): LiveData<ResponseState> = loadingLiveData
+    protected val loadingLiveData = MutableLiveData<ViewState>()
+    fun getLoadingLiveData(): LiveData<ViewState> = loadingLiveData
 
     fun onBackPressed() {
         router.exit()

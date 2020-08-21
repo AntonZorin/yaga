@@ -42,7 +42,10 @@ dependencies {
     implementation deps.android.core
     implementation deps.android.appCompat
     implementation deps.android.constraintLayout
+    implementation deps.android.recyclerView
+    implementation deps.android.design
     kapt deps.android.databinding
+    implementation deps.android.adapterDelegates
     implementation deps.architectureComponents.lifecycle.extensions
 
     implementation deps.rx.core
@@ -63,7 +66,12 @@ dependencies {
     implementation deps.dagger.android
     implementation deps.dagger.androidSupport
     kapt deps.dagger.annotationProcessor
+
     implementation deps.cicerone
     implementation deps.timber
     implementation deps.kotlin
+
+    implementation deps.glide.core
+//    kapt deps.glide.compiler
+//    implementation deps.glide.transformations
 }

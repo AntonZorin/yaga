@@ -9,13 +9,12 @@ import com.az.yagp.presentation.base.BaseActivity
 import com.az.yagp.presentation.ext.getViewModelOfType
 
 class AppActivity : BaseActivity() {
-    lateinit var binding: ActivityAppBinding
-    lateinit var viewModel: AppViewModel
+    private lateinit var viewModel: AppViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).getViewModelOfType()
-        binding = DataBindingUtil.setContentView(
+        DataBindingUtil.setContentView<ActivityAppBinding>(
             this,
             R.layout.activity_app
         )

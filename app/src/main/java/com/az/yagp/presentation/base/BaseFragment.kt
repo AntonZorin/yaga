@@ -4,11 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import com.az.yagp.R
-import com.az.yagp.presentation.common.ViewState
 import com.az.yagp.presentation.common.ViewModelFactory
-import com.az.yagp.presentation.view.StateView
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -32,7 +28,10 @@ abstract class BaseFragment : Fragment() {
         initViews()
     }
 
+    override fun onDestroy() {
+        disposable.dispose()
+        super.onDestroy()
+    }
 
     abstract fun initViews()
-
 }

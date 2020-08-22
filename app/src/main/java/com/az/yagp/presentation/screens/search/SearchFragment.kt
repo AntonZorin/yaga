@@ -13,6 +13,10 @@ import com.az.yagp.presentation.base.BaseFragment
 import com.az.yagp.presentation.ext.getViewModelOfType
 import com.az.yagp.presentation.screens.search.list.adapter.SearchAdapter
 import com.az.yagp.presentation.view.StateView
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.plusAssign
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
@@ -21,6 +25,20 @@ import javax.inject.Inject
 class SearchFragment : BaseFragment() {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var viewModel: SearchViewModel
+    private val inputObservable = Observable.create<String> { emitter ->
+        val textWatcher = object : TextWatcher {
+            override fun afterTextChanged(editable: Editable?) {
+                if (!emitter.isDisposed) {
+                    emitter.onNext(editable.toString())
+                }
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        }
+        emitter.setCancellable { binding.etInput.removeTextChangedListener(textWatcher) }
+        binding.etInput.addTextChangedListener(textWatcher)
+    }
 
     @Inject
     lateinit var adapter: SearchAdapter
@@ -54,14 +72,14 @@ class SearchFragment : BaseFragment() {
 
     private fun setupControls() {
         binding.run {
-            etInput.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(editable: Editable?) {
-                    viewModel.performSearch(editable.toString())
+            disposable += inputObservable
+                .filter { it.length > 1 }
+                .debounce(300, TimeUnit.MILLISECONDS)
+                .distinctUntilChanged()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { result ->
+                    viewModel.performSearch(result)
                 }
-
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            })
             stateView.listener = object : StateView.OnRetryListener {
                 override fun onRetryClicked() {
                     viewModel.retrySearch()

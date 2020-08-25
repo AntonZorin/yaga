@@ -1,14 +1,17 @@
 package com.az.yagp.data.repository
 
 import com.az.yagp.data.model.User
+import com.az.yagp.data.model.UserDetails
 import io.reactivex.Observable
-import retrofit2.http.Query
+import io.reactivex.Single
 
 /**
  *Created by Zorin.A on 21.August.2020.
  */
 interface GithubRepository {
     fun searchUsers(
-        @Query("q") input: String
+        input: String
     ): Observable<List<User>>
+
+    fun getUser(userName: String): Single<UserDetails>
 }

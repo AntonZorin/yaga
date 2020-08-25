@@ -13,10 +13,13 @@ class SearchAdapter @Inject constructor(
     private val searchAdapterUserDelegate: SearchAdapterUserDelegate
 ) : ListDelegationAdapter<MutableList<SearchListMarker>>() {
     var clickCallback: ((user: User) -> Unit)? = null
+        set(value) {
+            field = value
+            searchAdapterUserDelegate.clickCallback = value
+        }
 
     init {
         items = mutableListOf()
-        searchAdapterUserDelegate.clickCallback = clickCallback
         delegatesManager.addDelegate(searchAdapterUserDelegate)
     }
 

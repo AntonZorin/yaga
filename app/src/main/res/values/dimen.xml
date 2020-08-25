@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--defaults-->
+    <dimen name="indent_1x">8dp</dimen>
+    <dimen name="indent_2x">16dp</dimen>
+
+    <dimen name="avatar_size_small">56dp</dimen>
+    <dimen name="avatar_size_large">128dp</dimen>
+</resources>

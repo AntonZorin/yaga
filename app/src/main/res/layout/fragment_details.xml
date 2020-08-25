@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/indent_2x">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="@dimen/avatar_size_large"
+                android:layout_height="@dimen/avatar_size_large"
+                android:layout_marginStart="@dimen/indent_2x"
+                android:layout_marginTop="@dimen/indent_2x"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_user_name"
+                style="@style/Tv16Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/indent_2x"
+                app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                app:layout_constraintTop_toTopOf="@id/iv_avatar"
+                tools:text="UserName" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_user_email"
+                style="@style/Tv16Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_user_name"
+                tools:text="user email" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_user_location"
+                style="@style/Tv16Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_email"
+                app:layout_constraintTop_toBottomOf="@id/tv_user_email"
+                tools:text="user location" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_user_join_date"
+                style="@style/Tv16Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_location"
+                app:layout_constraintTop_toBottomOf="@id/tv_user_location"
+                tools:text="user join date" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_user_followers"
+                style="@style/Tv16Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_join_date"
+                app:layout_constraintTop_toBottomOf="@id/tv_user_join_date"
+                tools:text="followers: 25" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_user_followings"
+                style="@style/Tv16Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_followers"
+                app:layout_constraintTop_toBottomOf="@id/tv_user_followers"
+                tools:text="followings: 25" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_user_bio"
+                style="@style/Tv16Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/indent_2x"
+                android:layout_marginEnd="@dimen/indent_2x"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_avatar"
+                tools:text="Some user bio" />
+
+            <com.az.yagp.presentation.view.StateView
+                android:id="@+id/state_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

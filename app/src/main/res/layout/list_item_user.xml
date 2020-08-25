@@ -8,22 +8,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackground"
-        android:padding="16dp">
+        android:padding="@dimen/indent_2x">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_name"
             style="@style/Tv22Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/indent_2x"
             app:layout_constraintStart_toEndOf="@id/iv_avatar"
             app:layout_constraintTop_toTopOf="@id/iv_avatar"
             tools:text="John Dou" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_avatar"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_background" />
@@ -33,7 +33,7 @@
             style="@style/Tv16Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/indent_2x"
             android:layout_marginTop="2dp"
             android:text="@string/search_id"
             app:layout_constraintStart_toEndOf="@+id/iv_avatar"
@@ -44,7 +44,7 @@
             style="@style/Tv16Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/indent_1x"
             app:layout_constraintBottom_toBottomOf="@id/tv_repos_label"
             app:layout_constraintStart_toEndOf="@id/tv_repos_label"
             app:layout_constraintTop_toTopOf="@id/tv_repos_label"

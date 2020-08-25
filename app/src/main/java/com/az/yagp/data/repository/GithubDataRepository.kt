@@ -2,6 +2,7 @@ package com.az.yagp.data.repository
 
 import com.az.yagp.data.api.GithubApi
 import com.az.yagp.data.model.User
+import com.az.yagp.data.model.UserDetails
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
@@ -11,9 +12,12 @@ import javax.inject.Inject
  */
 class GithubDataRepository @Inject constructor(
     private val githubApi: GithubApi
-) :
-    GithubRepository {
+) : GithubRepository {
     override fun searchUsers(input: String): Observable<List<User>> {
         return githubApi.searchUsers(input).map { it.body()?.items ?: listOf() }
+    }
+
+    override fun getUser(userName: String): Single<UserDetails> {
+        return githubApi.getUser(userName).map { it.body() }
     }
 }

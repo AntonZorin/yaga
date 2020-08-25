@@ -1,7 +1,9 @@
 package com.az.yagp.data.api
 
+import com.az.yagp.data.model.UserDetails
 import com.az.yagp.data.model.UserSearchResult
 import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -16,4 +18,7 @@ interface GithubApi {
 
     @GET("{user}/repos")
     fun getUserRepos(@Path("user") user: String)
+
+    @GET("users/{user}")
+    fun getUser(@Path("user") user: String): Single<Response<UserDetails>>
 }

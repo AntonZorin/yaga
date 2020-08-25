@@ -72,6 +72,5 @@ dependencies {
     implementation deps.kotlin
 
     implementation deps.glide.core
-//    kapt deps.glide.compiler
-//    implementation deps.glide.transformations
+
 }

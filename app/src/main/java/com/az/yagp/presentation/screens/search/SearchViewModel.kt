@@ -7,9 +7,9 @@ import com.az.yagp.data.repository.GithubRepository
 import com.az.yagp.data.transformer.ObservableAsyncTransformer
 import com.az.yagp.presentation.base.BaseViewModel
 import com.az.yagp.presentation.common.ViewState
+import com.az.yagp.presentation.screens.Screens
 import io.reactivex.rxkotlin.plusAssign
 import ru.terrakok.cicerone.Router
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -31,12 +31,10 @@ class SearchViewModel @Inject constructor(
             .compose(ObservableAsyncTransformer())
             .subscribe(
                 {
-                    Timber.d("Success${it.size}")
                     loadingLiveData.value = ViewState(ViewState.State.IDLE)
                     _resultLiveData.value = it
                 },
                 {
-                    Timber.d("Error ${it.message}")
                     loadingLiveData.value = ViewState(ViewState.State.ERROR)
                 }
             )
@@ -47,6 +45,6 @@ class SearchViewModel @Inject constructor(
     }
 
     fun onUserSelected(it: User) {
-        //TODO: open details
+        router.navigateTo(Screens.DetailsScreen(it.login))
     }
 }

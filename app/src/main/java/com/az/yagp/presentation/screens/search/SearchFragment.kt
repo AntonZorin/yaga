@@ -7,10 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.az.yagp.databinding.FragmentSearchBinding
 import com.az.yagp.presentation.base.BaseFragment
-import com.az.yagp.presentation.ext.getViewModelOfType
+import com.az.yagp.presentation.ext.provideViewModel
 import com.az.yagp.presentation.screens.search.list.adapter.SearchAdapter
 import com.az.yagp.presentation.view.StateView
 import io.reactivex.Observable
@@ -45,7 +44,7 @@ class SearchFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).getViewModelOfType()
+        viewModel = provideViewModel()
     }
 
     override fun onCreateView(

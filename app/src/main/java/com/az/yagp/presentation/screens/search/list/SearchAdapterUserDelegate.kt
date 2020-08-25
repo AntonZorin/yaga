@@ -3,9 +3,11 @@ package com.az.yagp.presentation.screens.search.list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.az.yagp.R
 import com.az.yagp.data.model.User
 import com.az.yagp.databinding.ListItemUserBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import javax.inject.Inject
 
@@ -45,11 +47,15 @@ class SearchAdapterUserDelegate @Inject constructor() :
                 root.setOnClickListener {
                     clickCallback?.invoke(item)
                 }
+
                 tvName.text = item.login
                 tvReposValue.text = item.id.toString()
+
                 Glide.with(itemView.context)
                     .load(item.avatarUrl)
+                    .apply (RequestOptions.placeholderOf(R.drawable.ic_launcher_foreground))
                     .into(ivAvatar)
+
             }
         }
     }

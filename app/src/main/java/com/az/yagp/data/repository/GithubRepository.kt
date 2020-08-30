@@ -2,6 +2,7 @@ package com.az.yagp.data.repository
 
 import com.az.yagp.data.model.User
 import com.az.yagp.data.model.UserDetails
+import com.az.yagp.data.model.UserRepo
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -14,4 +15,5 @@ interface GithubRepository {
     ): Observable<List<User>>
 
     fun getUser(userName: String): Single<UserDetails>
+    fun getUserRepos(userName: String): Single<List<UserRepo>>
 }

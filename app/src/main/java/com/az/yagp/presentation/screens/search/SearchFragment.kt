@@ -62,6 +62,11 @@ class SearchFragment : BaseFragment() {
         subscribeToViewModel()
     }
 
+    override fun onDestroyView() {
+        binding.rvResults.adapter = null
+        super.onDestroyView()
+    }
+
     private fun setupList() {
         adapter.clickCallback = {
             viewModel.onUserSelected(it)

@@ -6,4 +6,7 @@
     <string name="retry">Обновить</string>
     <string name="search_ener_name">Введите имя</string>
     <string name="search_id">ID:</string>
+    <string name="search_repo">Поиск репозитория</string>
+    <string name="forks_count">%s Forks</string>
+    <string name="stars_count">%s Stars</string>
 </resources>

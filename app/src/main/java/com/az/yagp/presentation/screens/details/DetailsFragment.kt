@@ -1,6 +1,8 @@
 package com.az.yagp.presentation.screens.details
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +13,12 @@ import com.az.yagp.data.model.UserDetails
 import com.az.yagp.databinding.FragmentDetailsBinding
 import com.az.yagp.presentation.base.BaseFragment
 import com.az.yagp.presentation.ext.provideViewModel
+import com.az.yagp.presentation.mapper.DateMapper
+import com.az.yagp.presentation.screens.details.list.adapter.DetailsAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import timber.log.Timber
+import javax.inject.Inject
 
 /**
  *Created by Zorin.A on 25.August.2020.
@@ -20,6 +26,13 @@ import com.bumptech.glide.request.RequestOptions
 class DetailsFragment : BaseFragment() {
     private lateinit var viewModel: DetailsViewModel
     private lateinit var binding: FragmentDetailsBinding
+
+    @Inject
+    lateinit var dateMapper: DateMapper
+
+    @Inject
+    lateinit var detailsAdapter: DetailsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = provideViewModel()
@@ -36,8 +49,32 @@ class DetailsFragment : BaseFragment() {
 
     override fun initViews() {
         parseArguments()
-        viewModel.queryUser()
+        setupControls()
+        setupList()
         subscribeToViewModel()
+        viewModel.queryUser()
+    }
+
+    override fun onDestroy() {
+        binding.rvRepos.adapter = null
+        super.onDestroy()
+    }
+
+    private fun setupControls() {
+        binding.let {
+            it.etInput.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(p0: Editable?) {
+                    viewModel.filterRepos(p0.toString())
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            })
+        }
+    }
+
+    private fun setupList() {
+        binding.rvRepos.adapter = detailsAdapter
     }
 
     private fun subscribeToViewModel() {
@@ -46,6 +83,10 @@ class DetailsFragment : BaseFragment() {
         })
         viewModel.getLoadingLiveData().observe(viewLifecycleOwner, Observer {
             binding.stateView.setState(it)
+        })
+        viewModel.reposLiveData.observe(viewLifecycleOwner, Observer {
+            Timber.d("SIZE: ${it.size}")
+            detailsAdapter.swapData(it)
         })
     }
 
@@ -58,7 +99,7 @@ class DetailsFragment : BaseFragment() {
             tvUserName.text = it.name
             tvUserEmail.text = it.email
             tvUserLocation.text = it.location
-            tvUserJoinDate.text = it.createdAt
+            tvUserJoinDate.text = dateMapper.map(it.createdAt)
             tvUserFollowers.text = it.followers.toString()
             tvUserFollowings.text = it.following.toString()
             tvUserBio.text = it.bio

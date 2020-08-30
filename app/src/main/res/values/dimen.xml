@@ -3,6 +3,7 @@
     <!--defaults-->
     <dimen name="indent_1x">8dp</dimen>
     <dimen name="indent_2x">16dp</dimen>
+    <dimen name="indent_3x">24dp</dimen>
 
     <dimen name="avatar_size_small">56dp</dimen>
     <dimen name="avatar_size_large">128dp</dimen>

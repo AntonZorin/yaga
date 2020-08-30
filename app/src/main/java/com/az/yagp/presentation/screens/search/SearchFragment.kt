@@ -22,6 +22,7 @@ import javax.inject.Inject
  *Created by Zorin.A on 20.August.2020.
  */
 class SearchFragment : BaseFragment() {
+    //region var
     private lateinit var binding: FragmentSearchBinding
     private lateinit var viewModel: SearchViewModel
     private val inputObservable = Observable.create<String> { emitter ->
@@ -41,7 +42,9 @@ class SearchFragment : BaseFragment() {
 
     @Inject
     lateinit var adapter: SearchAdapter
+    //endregion
 
+    //region override
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = provideViewModel()
@@ -66,7 +69,9 @@ class SearchFragment : BaseFragment() {
         binding.rvResults.adapter = null
         super.onDestroyView()
     }
+    //endregion
 
+    //region fun
     private fun setupList() {
         adapter.clickCallback = {
             viewModel.onUserSelected(it)
@@ -100,6 +105,7 @@ class SearchFragment : BaseFragment() {
             binding.stateView.setState(it)
         })
     }
+    //endregion
 
     companion object {
         fun newInstance() = SearchFragment()

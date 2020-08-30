@@ -26,6 +26,7 @@ import javax.inject.Inject
  *Created by Zorin.A on 25.August.2020.
  */
 class DetailsFragment : BaseFragment() {
+    //region var
     private lateinit var viewModel: DetailsViewModel
     private lateinit var binding: FragmentDetailsBinding
 
@@ -34,7 +35,9 @@ class DetailsFragment : BaseFragment() {
 
     @Inject
     lateinit var detailsAdapter: DetailsAdapter
+    //endregion
 
+    //region override
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         showBackButton(true)
@@ -75,7 +78,9 @@ class DetailsFragment : BaseFragment() {
         showBackButton(false)
         super.onDestroy()
     }
+    //endregion
 
+    //region fun
     private fun showBackButton(isShow: Boolean) {
         (activity as? AppActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(isShow)
     }
@@ -131,6 +136,7 @@ class DetailsFragment : BaseFragment() {
             viewModel.userName = it.getString(KEY_USERNAME)
         }
     }
+    //endregion
 
     companion object {
         const val KEY_USERNAME = "key_username"

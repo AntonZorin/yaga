@@ -12,6 +12,7 @@ class AppActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         viewModel = provideViewModel()
         DataBindingUtil.setContentView<ActivityAppBinding>(
             this,
